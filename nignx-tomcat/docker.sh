@@ -37,6 +37,8 @@ case $1 in
         -v /home/data/tomcats/conf/server.xml:/usr/local/tomcat/conf/server.xml \
         -d tomcat:7.0.79
     
+    docker rm -fv nginx
+    
     docker run \
         --name nginx -h nginx \
         -v /home/data/nginx/html:/usr/share/nginx/html \
@@ -54,22 +56,22 @@ case $1 in
 
   start )
     #启动容器
-    docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
+    docker start ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi
   ;;
 
   stop )
     #关闭容器
-    docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
+    docker stop ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi
   ;;
 
   restart )
     #重启容器
-    docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
+    docker restart ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi
   ;;
 
   delete )
     #删除容器
-    docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
+    docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi
   ;;
 
 esac
