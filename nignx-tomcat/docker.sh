@@ -1,16 +1,16 @@
 #!/bin/sh
 
 #auther:zhuguojie
-#date:2017Äê8ÔÂ1ÈÕ 18:46:26
+#date:2017å¹´8æœˆ1æ—¥ 18:46:26
 
-#ÉèÖÃSElinux
+#è®¾ç½®SElinux
 setenforce 0
 
-#¸ù¾İÊäÈë²ÎÊı×ö´¦Àí
+#æ ¹æ®è¾“å…¥å‚æ•°åšå¤„ç†
 case $1 in
   
   install )
-    #³õÊ¼¼ÓÔØÈİÆ÷
+    #åˆå§‹åŠ è½½å®¹å™¨
 
     docker run \
         --name ccla-zsgl -h ccla-zsgl \
@@ -39,9 +39,9 @@ case $1 in
     
     docker run \
         --name nginx -h nginx \
-        -v /home/data/nginx/html:/usr/share/nginx/html:ro \
-        -v /home/data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro \
-        -v /home/data/nginx/conf/servers:/etc/nginx/servers:ro \
+        -v /home/data/nginx/html:/usr/share/nginx/html \
+        -v /home/data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+        -v /home/data/nginx/conf/servers:/etc/nginx/servers \
         --link ccla-zsgl:ccla-zsgl \
         --link ksb-front:ksb-front \
         --link ksb-admin:ksb-admin \
@@ -53,23 +53,25 @@ case $1 in
   ;;
 
   start )
-    #Æô¶¯ÈİÆ÷
+    #å¯åŠ¨å®¹å™¨
     docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
   ;;
 
   stop )
-    #¹Ø±ÕÈİÆ÷
+    #å…³é—­å®¹å™¨
     docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
   ;;
 
   restart )
-    #ÖØÆôÈİÆ÷
+    #é‡å¯å®¹å™¨
     docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
   ;;
 
   delete )
-    #É¾³ıÈİÆ÷
+    #åˆ é™¤å®¹å™¨
     docker rm -fv ccla-zsgl ksb-front ksb-admin ksb-weixin ksb-cgi nginx
   ;;
 
 esac
+
+setenforce 1
