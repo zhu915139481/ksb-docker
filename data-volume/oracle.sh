@@ -26,6 +26,10 @@ case $1 in
   
   install )
   
+  
+  
+  setenforce 0
+  
   # create oracle container 运行oracle容器，依据已存在的oracle数据卷 
 
   ##Consider this formula before customizing:
@@ -39,6 +43,10 @@ case $1 in
   -e sessions=1105 \
   -e transactions=1215 \
   sath89/oracle-xe-11g
+  
+  sleep 10
+  
+  setenforce 1
   
   ;;
   
