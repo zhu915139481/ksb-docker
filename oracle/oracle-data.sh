@@ -103,7 +103,9 @@ case $1 in
   
   backup )
   
+  setenforce 0 
   docker run --rm --volumes-from $ORACLE_DATA_CONTAINER_NAME -v $(pwd):/backup busybox tar cvf /backup/backup.tar $ORACLE_HOME
+  setenforce 1 
   
   ;;
   
