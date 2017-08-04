@@ -20,8 +20,6 @@ case $1 in
   
     setenforce 1
     
-    exit
-    
   ;;
   
   install )
@@ -44,7 +42,7 @@ case $1 in
   -e transactions=1215 \
   sath89/oracle-xe-11g
   
-  sleep 10
+  docker logs -f $ORACLE_CONTAINER_NAME
   
   setenforce 1
   
