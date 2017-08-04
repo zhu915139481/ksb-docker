@@ -1,0 +1,4 @@
+#oracle 使用sath89/oracle-xe-11g镜像，oracle11g
+FROM busybox
+RUN mkdir -p /home/logs/nginx && mkdir -p /home/logs/tomcat && mkdir -p /home/logs/oracle  
+VOLUME ["/home/logs"]
