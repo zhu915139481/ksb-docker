@@ -1,0 +1,4 @@
+#oracle 使用sath89/oracle-xe-11g镜像，oracle11g
+FROM busybox
+RUN mkdir -p /u01/app/oracle 
+VOLUME ["/u01/app/oracle"]
