@@ -8,11 +8,7 @@ ORACLE_WEB_PORT=8080
 
 ORACLE_CONTAINER_NAME=oracle
 
-#根据输入参数做处理
-case $1 in
-  
-  install-volume )
-  
+volume(){
     setenforce 0
   
     mkdir -p $ORACLE_DATA
@@ -24,11 +20,9 @@ case $1 in
     docker run --rm -v $ORACLE_DATA:/u01/app/oracle sath89/oracle-xe-11g  
     
     setenforce 1
-    
-  ;;
-  
-  install )
-  
+}
+
+oracle(){
   setenforce 0
   
   # create oracle container 运行oracle容器，依据已存在的oracle数据卷 
@@ -48,6 +42,21 @@ case $1 in
   docker logs -f $ORACLE_CONTAINER_NAME
   
   setenforce 1
+
+}
+
+#根据输入参数做处理
+case $1 in
+  
+  install-volume )
+  
+    volume()
+    
+  ;;
+  
+  install )
+  
+    oracle()
   
   ;;
   
