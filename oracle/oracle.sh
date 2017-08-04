@@ -50,13 +50,13 @@ case $1 in
   
   install-volume )
   
-    volume()
+    volume
     
   ;;
   
   install )
   
-    oracle()
+    oracle
   
   ;;
   
