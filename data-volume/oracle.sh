@@ -12,21 +12,18 @@ ORACLE_CONTAINER_NAME=oracle
 case $1 in
   
   install-volume )
+  
+    mkdir -p $ORACLE_DATA
     
-    setenforce 0
+    #添加selinux规则，改变要挂载的目录的安全性文本
+    chcon -Rt svirt_sandbox_file_t $ORACLE_DATA
 
     # create oracle data volume  建立oracle数据卷，保存在宿主机上，用于保存oracle数据
     docker run --rm -v $ORACLE_DATA:/u01/app/oracle sath89/oracle-xe-11g  
-  
-    setenforce 1
     
   ;;
   
   install )
-  
-  
-  
-  setenforce 0
   
   # create oracle container 运行oracle容器，依据已存在的oracle数据卷 
 
@@ -43,8 +40,6 @@ case $1 in
   sath89/oracle-xe-11g
   
   docker logs -f $ORACLE_CONTAINER_NAME
-  
-  setenforce 1
   
   ;;
   
