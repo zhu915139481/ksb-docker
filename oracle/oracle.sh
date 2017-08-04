@@ -73,4 +73,12 @@ case $1 in
   
   ;;
   
+  delete-all )
+  
+  docker rm -fv $ORACLE_CONTAINER_NAME
+  
+  rm -rf $ORACLE_DATA
+  
+  ;;
+  
 esac
