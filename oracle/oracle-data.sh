@@ -28,7 +28,8 @@ oracle(){
   #transactions=sessions*1.1
   docker run -d -p $ORACLE_WEB_PORT:8080 -p $ORACLE_PORT:1521 \
   --name $ORACLE_CONTAINER_NAME \
-  --volumes-from $ORACLE_DATA_CONTAINER_NAME \ #挂载oracle数据卷
+  #挂载oracle数据卷
+  --volumes-from $ORACLE_DATA_CONTAINER_NAME \ 
   -e processes=1000 \
   -e sessions=1105 \
   -e transactions=1215 \
