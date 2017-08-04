@@ -41,7 +41,12 @@ oracle(){
   
   docker logs -f $ORACLE_CONTAINER_NAME
   
-  setenforce 1
+  while [ "$END" == '' ]; do
+	sleep 1
+	trap "setenforce 1 && END=1" INT TERM
+  done
+  
+  # setenforce 1
 
 }
 
