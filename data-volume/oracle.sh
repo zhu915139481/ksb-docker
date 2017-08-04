@@ -2,6 +2,8 @@
 
 # https://github.com/zhu915139481/docker-oracle-xe-11g  
 
+setenforce 0
+
 # first create oracle data volume  
 docker run --rm --name oracle -v /home/data/oracle/data:/u01/app/oracle sath89/oracle-xe-11g  
 
@@ -18,3 +20,4 @@ docker run -d -p 8080:8080 -p 1521:1521 --name oracle \
 -e transactions=1215 \
 sath89/oracle-xe-11g
 
+setenforce 1
