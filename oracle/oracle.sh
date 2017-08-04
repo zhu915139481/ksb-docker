@@ -60,6 +60,14 @@ case $1 in
   
   ;;
   
+  install-all )
+  
+    volume
+    
+    oracle
+  
+  ;;
+  
   stop )
   
   docker stop $ORACLE_CONTAINER_NAME
