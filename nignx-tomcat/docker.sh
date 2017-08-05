@@ -29,7 +29,7 @@ case $1 in
     chcon -Rt svirt_sandbox_file_t $NGINX_CONF $TOMCAT_CONF
     
     #tomcat容器连接
-    links=""
+    links="--link $ORACLE_NAME:$ORACLE_DB_NAME"
     #初始加载容器
     for tomcat in $TOMCAT_NAMES
     do
