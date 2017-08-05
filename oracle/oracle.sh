@@ -107,7 +107,7 @@ case $1 in
   
   docker rm -fv $ORACLE_CONTAINER_NAME
   
-  rm -rf $ORACLE_DATA
+  docker rm -fv $ORACLE_DATA
   
   ;;
   
