@@ -76,5 +76,13 @@ case $1 in
     #删除容器
     docker rm -fv $TOMCAT_NAMES
   ;;
+  
+  delete-nginx )
+    docker rm -fv $NGINX_NAME
+  ;;
+  
+  delete-all )
+    docker rm -fv $TOMCAT_NAMES $NGINX_NAME
+  ;;
 
 esac
