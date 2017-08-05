@@ -9,6 +9,11 @@
 TOMCAT_CONF=/home/data/tomcats
 NGINX_CONF=/home/data/nginx
 
+#oracle容器名称
+ORACLE_NAME=oracle
+#其他容器内联oracle主机名，用于连接oracle服务
+ORACLE_DB_NAME=oracle
+
 #根据输入参数做处理
 case $1 in
   
@@ -22,26 +27,31 @@ case $1 in
     docker run \
         --name ccla-zsgl -h ccla-zsgl \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
+        --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
 
     docker run \
         --name ksb-front -h ksb-front \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
+        --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
 
     docker run \
         --name ksb-admin -h ksb-admin \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
+        --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
 
     docker run \
         --name ksb-weixin -h ksb-weixin \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
+        --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
 
     docker run \
         --name ksb-cgi -h ksb-cgi \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
+        --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
     
     docker rm -fv nginx
