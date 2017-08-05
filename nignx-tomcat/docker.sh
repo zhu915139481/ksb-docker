@@ -37,7 +37,7 @@ case $1 in
       docker run \
         --name $tomcat -h $tomcat \
         -v $TOMCAT_CONF/conf/server.xml:/usr/local/tomcat/conf/server.xml \
-        --link $ORACLE_NAME=$ORACLE_DB_NAME \
+        --link $ORACLE_NAME:$ORACLE_DB_NAME \
         -d tomcat:7.0.79
       
       links="$links --link $tomcat:$tomcat"
