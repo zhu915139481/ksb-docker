@@ -12,15 +12,15 @@ ORACLE_DATA_CONTAINER_NAME=oracle-data
 ORACLE_CONTAINER_NAME=oracle
 
 volume(){
-    setenforce 0 
+    #setenforce 0 
     # create oracle data volume  建立oracle数据卷，保存在宿主机上，用于保存oracle数据
     docker run --privileged=true --name $ORACLE_DATA_CONTAINER_NAME sath89/oracle-xe-11g  
-    setenforce 1
+    #setenforce 1
 }
 
 oracle(){
  
-  setenforce 0
+  #setenforce 0
 
   # create oracle container 运行oracle容器，依据已存在的oracle数据卷 
 
@@ -38,7 +38,7 @@ oracle(){
   -e transactions=1215 \
   sath89/oracle-xe-11g
   
-  trap "setenforce 1" INT
+  #trap "setenforce 1" INT
   
   docker logs -f $ORACLE_CONTAINER_NAME
   
@@ -112,9 +112,9 @@ case $1 in
   
   backup )
   
-  setenforce 0 
-  docker run --rm --volumes-from $ORACLE_DATA_CONTAINER_NAME -v $(pwd):/backup busybox tar cvf /backup/backup.tar $ORACLE_HOME
-  setenforce 1 
+  #setenforce 0 
+  docker run --privileged=true --rm --volumes-from $ORACLE_DATA_CONTAINER_NAME -v $(pwd):/backup busybox tar cvf /backup/backup.tar $ORACLE_HOME
+  #setenforce 1 
   
   ;;
   
