@@ -40,7 +40,7 @@ case $1 in
         --link $ORACLE_NAME=$ORACLE_DB_NAME \
         -d tomcat:7.0.79
       
-      links=$links --link $tomcat:$tomcat
+      links="$links --link $tomcat:$tomcat"
 
     done
     
