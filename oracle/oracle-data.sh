@@ -19,6 +19,8 @@ volume(){
 }
 
 oracle(){
+ 
+  setenforce 0
 
   # create oracle container 运行oracle容器，依据已存在的oracle数据卷 
 
@@ -36,7 +38,14 @@ oracle(){
   -e transactions=1215 \
   sath89/oracle-xe-11g
   
+  trap "setenforce 1" INT
+  
   docker logs -f $ORACLE_CONTAINER_NAME
+  
+  #while [ "$END" == '' ]; do
+  # leep 1
+  #	trap "setenforce 1 && END=1" INT TERM
+  #done
 
 }
 
