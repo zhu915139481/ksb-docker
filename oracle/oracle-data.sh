@@ -12,10 +12,10 @@ ORACLE_DATA_CONTAINER_NAME=oracle-data
 ORACLE_CONTAINER_NAME=oracle
 
 volume(){
-
+    setenforce 0 
     # create oracle data volume  建立oracle数据卷，保存在宿主机上，用于保存oracle数据
     docker run --name $ORACLE_DATA_CONTAINER_NAME sath89/oracle-xe-11g  
-
+    setenforce 1
 }
 
 oracle(){
