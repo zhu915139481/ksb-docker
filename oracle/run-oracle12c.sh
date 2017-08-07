@@ -1,0 +1,1 @@
+docker run -d -p 1521:1521 -h oracle --name oracle -e WEB_CONSOLE=false -e USE_UTF8_IF_CHARSET_EMPTY=true -e CHARACTER_SET=AL32UTF8 -v /home/data/oracle/data:/u01/app/oracle sath89/oracle-12c

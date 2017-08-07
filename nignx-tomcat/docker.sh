@@ -26,7 +26,7 @@ case $1 in
   install )
   
     #添加selinux规则，改变要挂载的目录的安全性文本
-    chcon -Rt svirt_sandbox_file_t $NGINX_CONF $TOMCAT_CONF
+    #chcon -Rt svirt_sandbox_file_t $NGINX_CONF $TOMCAT_CONF
     
     #tomcat容器连接
     links="--link $ORACLE_NAME:$ORACLE_DB_NAME"
